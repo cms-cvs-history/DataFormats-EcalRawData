@@ -7,7 +7,7 @@
  *  Container for ECAL specific DCC Header information
  *
  *
- *  $Id: EcalDCCHeaderBlock.h,v 1.21 2008/12/03 14:04:50 franzoni Exp $
+ *  $Id: EcalDCCHeaderBlock.h,v 1.16 2008/02/07 10:21:10 franzoni Exp $
  */
 
 #include <vector>
@@ -107,7 +107,6 @@ class EcalDCCHeaderBlock
   void setOrbit(const int& orbit){orbitNumber_ = orbit;}
   void setEventSettings(const  EcalDCCEventSettings& EventSettings) { EventSettings_=EventSettings; };
   void setRunType(const short& runType) { runType_=runType; };
-  void setZs(const short& zs) { zs_=zs;};
   void setBasicTriggerType(const short& triggerType) { basic_trigger_type_=triggerType; };
   //void setSequence(const short& sequence) { sequence_=sequence; } ;
   void setRtHalf(const short& rtHalf) { rtHalf_=rtHalf; } ;
@@ -121,18 +120,6 @@ class EcalDCCHeaderBlock
   void setTriggerTowerFlags(const std::vector<short>& triggerTowerFlag) { triggerTowerFlag_ = triggerTowerFlag; };
   void setFEStatus(const std::vector<short>& feStatus) { feStatus_ = feStatus; };
 
-  void setFEBx(const std::vector<short>& feBx)  { feBx_  = feBx;  }
-  void setTCCBx(const std::vector<short>& tccBx){ tccBx_ = tccBx; }
-  void setSRPBx(const short & srpBx)            { srpBx_ = srpBx; }
-  
-  void setFELv1(const std::vector<short>& feLv1)  { feLv1_ = feLv1;   }
-  void setTCCLv1(const std::vector<short>& tccLv1){ tccLv1_ = tccLv1; }
-  void setSRPLv1(const short & srpLv1)            { srpLv1_ = srpLv1; }
-
-
-
-
-
   //TODO add all the get methods
   
   int getDCCErrors() const{ return dccErrors_;}
@@ -143,7 +130,6 @@ class EcalDCCHeaderBlock
   int getOrbit() const {return orbitNumber_;}
   EcalDCCEventSettings getEventSettings() const { return EventSettings_;}
   short getRunType() const {return runType_ ;}
-  short getZs() const {return zs_ ;}
   short getBasicTriggerType() const {return basic_trigger_type_ ;}
 
   short getRtHalf() const { return rtHalf_; } 
@@ -153,19 +139,9 @@ class EcalDCCHeaderBlock
   bool getZeroSuppression() const { return zeroSuppression_;}
   bool getTestZeroSuppression() const {return testZeroSuppression_ ;}
   short getSrpStatus() const  { return srpStatus_;}
-  const std::vector<short>& getTccStatus() const { return tccStatus_ ;}
-  const std::vector<short>& getTriggerTowerFlag() const { return triggerTowerFlag_ ;}
-  const std::vector<short>& getFEStatus() const { return feStatus_ ;}
-
-  const std::vector<short>& getFEBxs() const { return feBx_;}
-  const std::vector<short>& getTCCBx() const { return tccBx_;}
-  short              getSRPBx() const { return srpBx_; }
-  
-  const std::vector<short>& getFELv1() const { return feLv1_;}
-  const std::vector<short>& getTCCLv1()const { return tccLv1_;}
-  short              getSRPLv1() const { return srpLv1_; }
-  
-  
+  std::vector<short> getTccStatus() const { return tccStatus_ ;}
+  std::vector<short> getTriggerTowerFlag() const { return triggerTowerFlag_ ;}
+  std::vector<short> getFEStatus() const { return feStatus_ ;}
  private:
 
   int dccId_;  //to be used as the Key
@@ -174,7 +150,6 @@ class EcalDCCHeaderBlock
   int dccInTTCCommand_;
   int orbitNumber_;
   short runType_;
-  short zs_;
 
   short basic_trigger_type_;
 
@@ -194,14 +169,6 @@ class EcalDCCHeaderBlock
   std::vector<short> tccStatus_;
   std::vector<short> triggerTowerFlag_;
   std::vector<short> feStatus_;
-  
-  std::vector<short> feBx_;  
-  std::vector<short> tccBx_; 
-  short              srpBx_; 
-  
-  std::vector<short> feLv1_;  
-  std::vector<short> tccLv1_; 
-  short              srpLv1_; 
  
 };
 
